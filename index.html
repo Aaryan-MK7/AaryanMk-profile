@@ -339,13 +339,9 @@
       max-width: 43rem;
       margin: 0;
       color: var(--muted);
-      font-size: clamp(1.05rem, 1.65vw, 1.35rem);
-      letter-spacing: -0.02em;
-    }
-
-    .hero-copy strong {
-      color: var(--text);
-      font-weight: 600;
+      font: 600 0.72rem/1.5 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .hero-cta {
@@ -438,10 +434,6 @@
     }
 
     .section-header {
-      display: grid;
-      grid-template-columns: 1fr minmax(16rem, 0.7fr);
-      align-items: end;
-      gap: 2rem;
       margin-bottom: clamp(3rem, 7vw, 6rem);
     }
 
@@ -470,12 +462,6 @@
       letter-spacing: -0.065em;
     }
 
-    .section-intro {
-      max-width: 38rem;
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.35vw, 1.15rem);
-    }
 
     .bento {
       display: grid;
@@ -490,7 +476,7 @@
       --ry: 0deg;
       position: relative;
       display: flex;
-      min-height: 33rem;
+      min-height: 27rem;
       flex-direction: column;
       padding: clamp(1.5rem, 3vw, 2.5rem);
       border: 1px solid var(--line);
@@ -655,16 +641,10 @@
       transform: rotate(45deg);
     }
 
-    .project-description {
-      max-width: 59ch;
-      margin: 1rem 0 1.5rem;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
 
     .project-footer {
       align-items: end;
-      padding-top: 1rem;
+      padding-top: 1.5rem;
     }
 
     .tags {
@@ -684,21 +664,6 @@
       text-transform: uppercase;
     }
 
-    .project-proof {
-      max-width: 12ch;
-      margin: 0;
-      text-align: right;
-      font: 600 0.64rem/1.4 var(--mono);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .project-proof strong {
-      display: block;
-      margin-bottom: 0.2rem;
-      font: 500 2rem/1 var(--serif);
-      letter-spacing: -0.04em;
-    }
 
     .secondary-projects {
       display: grid;
@@ -739,19 +704,9 @@
     }
 
     .secondary-copy h3 {
-      margin: 0 0 0.25rem;
+      margin: 0;
       font: 600 1.4rem/1 var(--serif);
       letter-spacing: -0.03em;
-    }
-
-    .secondary-copy p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-    .secondary-card:hover .secondary-copy p {
-      color: color-mix(in srgb, var(--bg) 70%, transparent);
     }
 
     .arrow {
@@ -763,53 +718,43 @@
       transform: translate(0.3rem, -0.3rem);
     }
 
-    .experience-layout {
+    .company-grid {
       display: grid;
-      grid-template-columns: minmax(15rem, 0.65fr) minmax(0, 1.35fr);
-      gap: clamp(3rem, 10vw, 10rem);
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
     }
 
-    .sticky-heading {
-      position: sticky;
-      top: 8rem;
-      align-self: start;
-    }
-
-    .experience-list {
-      border-top: 1px solid var(--line);
-    }
-
-    .experience-item {
+    .company-card {
       display: grid;
-      grid-template-columns: 8rem 1fr auto;
+      min-height: 18rem;
+      place-items: center;
       gap: 1.5rem;
-      padding-block: 2rem;
-      border-bottom: 1px solid var(--line);
-      transition: padding 350ms var(--ease-out);
+      padding: 2rem;
+      border-right: 1px solid var(--line);
+      text-align: center;
+      transition:
+        background 300ms ease,
+        color 300ms ease;
     }
 
-    .experience-item:hover {
-      padding-inline: 0.75rem;
+    .company-card:last-child {
+      border-right: 0;
     }
 
-    .experience-date,
-    .experience-location {
-      color: var(--muted);
-      font: 600 0.65rem/1.5 var(--mono);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+    .company-card:hover {
+      background: var(--text);
+      color: var(--bg);
     }
 
-    .experience-role {
-      margin: 0 0 0.45rem;
-      font: 500 clamp(1.5rem, 2.5vw, 2.2rem)/1 var(--serif);
-      letter-spacing: -0.035em;
+    .company-card svg {
+      width: min(100%, 9rem);
+      height: 5rem;
     }
 
-    .experience-company {
+    .company-card h3 {
       margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
+      font: 600 clamp(1.2rem, 2vw, 1.65rem)/1.1 var(--serif);
+      letter-spacing: -0.03em;
     }
 
     .education {
@@ -1189,8 +1134,7 @@
       }
 
       .hero-bottom,
-      .section-header,
-      .experience-layout {
+      .section-header {
         grid-template-columns: 1fr;
       }
 
@@ -1205,9 +1149,6 @@
         grid-column: span 12;
       }
 
-      .sticky-heading {
-        position: static;
-      }
 
       .education {
         grid-template-columns: 1fr;
@@ -1241,18 +1182,9 @@
       }
 
       .project-card {
-        min-height: 30rem;
+        min-height: 24rem;
       }
 
-      .project-footer {
-        display: block;
-      }
-
-      .project-proof {
-        max-width: none;
-        margin-top: 1.5rem;
-        text-align: left;
-      }
 
       .secondary-projects {
         grid-template-columns: 1fr;
@@ -1267,13 +1199,18 @@
         border-bottom: 0;
       }
 
-      .experience-item {
+      .company-grid {
         grid-template-columns: 1fr;
-        gap: 0.65rem;
       }
 
-      .experience-location {
-        display: none;
+      .company-card {
+        min-height: 14rem;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .company-card:last-child {
+        border-bottom: 0;
       }
 
       .education-primary {
@@ -1396,7 +1333,7 @@
       </div>
       <div class="hero-bottom">
         <p class="hero-copy">
-          From <strong>cloud-scale data migration</strong> to intelligent developer tools and federated products—I turn complicated systems into clear, reliable experiences.
+          Cloud systems · Intelligent tools · Product engineering
         </p>
         <div class="hero-cta">
           <a class="button button-solid magnetic" href="#work">Explore work ↓</a>
@@ -1409,15 +1346,15 @@
       <div class="proof-grid shell">
         <article class="proof reveal">
           <span class="proof-value">30M+</span>
-          <p class="proof-label">Banking records supported through cloud migration systems</p>
+          <p class="proof-label">Records migrated</p>
         </article>
         <article class="proof reveal">
           <span class="proof-value">40%</span>
-          <p class="proof-label">Less manual migration review through validation automation</p>
+          <p class="proof-label">Less manual review</p>
         </article>
         <article class="proof reveal">
           <span class="proof-value">95%</span>
-          <p class="proof-label">Traffic anomaly detection accuracy with Prophet at InfoEdge</p>
+          <p class="proof-label">Anomaly detection accuracy</p>
         </article>
       </div>
     </section>
@@ -1426,11 +1363,8 @@
       <header class="section-header reveal">
         <div>
           <p class="eyebrow">01 / Selected systems</p>
-          <h2 class="section-title" id="work-title">Built with intent.</h2>
+          <h2 class="section-title" id="work-title">Selected work.</h2>
         </div>
-        <p class="section-intro">
-          Reliability labs, code intelligence, knowledge systems, and distributed products. Each project starts with a systems question—not a feature checklist.
-        </p>
       </header>
 
       <div class="bento">
@@ -1452,7 +1386,6 @@
               <h3 class="project-title">Packet</h3>
               <a class="project-link" href="https://github.com/Aaryan-MK7/Packet" target="_blank" rel="noreferrer" aria-label="View Packet on GitHub">↗</a>
             </div>
-            <p class="project-description">A multi-agent intelligence layer designed to reconcile scattered documents into evidence-linked, reusable knowledge packets.</p>
             <div class="project-footer">
               <ul class="tags" aria-label="Packet technologies">
                 <li class="tag">Python</li>
@@ -1460,7 +1393,6 @@
                 <li class="tag">RAG</li>
                 <li class="tag">Agents</li>
               </ul>
-              <p class="project-proof"><strong>4</strong> synthesis stages designed</p>
             </div>
           </div>
         </article>
@@ -1484,14 +1416,12 @@
               <h3 class="project-title">Ripple</h3>
               <a class="project-link" href="https://github.com/Aaryan-MK7/Ripple" target="_blank" rel="noreferrer" aria-label="View Ripple on GitHub">↗</a>
             </div>
-            <p class="project-description">Local code intelligence designed to map connected systems before agents plan and propagate changes.</p>
             <div class="project-footer">
               <ul class="tags" aria-label="Ripple technologies">
                 <li class="tag">MCP</li>
                 <li class="tag">RAG</li>
                 <li class="tag">Git</li>
               </ul>
-              <p class="project-proof"><strong>7</strong> dependency surfaces mapped</p>
             </div>
           </div>
         </article>
@@ -1514,14 +1444,12 @@
               <h3 class="project-title">BlackBox</h3>
               <a class="project-link" href="https://github.com/Aaryan-MK7/BlackBox" target="_blank" rel="noreferrer" aria-label="View BlackBox on GitHub">↗</a>
             </div>
-            <p class="project-description">A local-first reliability lab designed to replay outages and score competing recovery plans against correctness.</p>
             <div class="project-footer">
               <ul class="tags" aria-label="BlackBox technologies">
                 <li class="tag">K8s</li>
                 <li class="tag">AWS</li>
                 <li class="tag">OTel</li>
               </ul>
-              <p class="project-proof"><strong>5</strong> recovery signals compared</p>
             </div>
           </div>
         </article>
@@ -1544,14 +1472,12 @@
               <h3 class="project-title">Crimson</h3>
               <a class="project-link" href="https://github.com/Aaryan-MK7/Crimson" target="_blank" rel="noreferrer" aria-label="View Crimson on GitHub">↗</a>
             </div>
-            <p class="project-description">A federated social network where independently operated nodes exchange content through authenticated, push-based inboxes.</p>
             <div class="project-footer">
               <ul class="tags" aria-label="Crimson technologies">
                 <li class="tag">Django</li>
                 <li class="tag">REST</li>
                 <li class="tag">PostgreSQL</li>
               </ul>
-              <p class="project-proof"><strong>6</strong> federated primitives shipped</p>
             </div>
           </div>
         </article>
@@ -1562,7 +1488,6 @@
           <span class="secondary-mark" aria-hidden="true">BR</span>
           <span class="secondary-copy">
             <h3>Bridge</h3>
-            <p>React · Express · MongoDB · DocuSign</p>
           </span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
@@ -1570,7 +1495,6 @@
           <span class="secondary-mark" aria-hidden="true">TJ</span>
           <span class="secondary-copy">
             <h3>Ticketjack</h3>
-            <p>Android · Java · Firebase · Cloud Functions</p>
           </span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
@@ -1587,37 +1511,36 @@
     </div>
 
     <section class="section shell" id="experience" aria-labelledby="experience-title">
-      <div class="experience-layout">
-        <header class="sticky-heading reveal">
+      <header class="section-header reveal">
+        <div>
           <p class="eyebrow">02 / Experience</p>
-          <h2 class="section-title" id="experience-title">Where I’ve worked.</h2>
-        </header>
-        <div class="experience-list reveal">
-          <article class="experience-item">
-            <time class="experience-date" datetime="2026-05">2026 — 2026</time>
-            <div>
-              <h3 class="experience-role">Software Developer, Cloud Development</h3>
-              <p class="experience-company">Bank of Montreal (BMO)</p>
-            </div>
-            <span class="experience-location">Toronto</span>
-          </article>
-          <article class="experience-item">
-            <time class="experience-date" datetime="2025-05">2025</time>
-            <div>
-              <h3 class="experience-role">Software Developer Intern</h3>
-              <p class="experience-company">ARO Robotic Systems</p>
-            </div>
-            <span class="experience-location">Edmonton</span>
-          </article>
-          <article class="experience-item">
-            <time class="experience-date" datetime="2024-05">2024</time>
-            <div>
-              <h3 class="experience-role">Machine Learning Intern</h3>
-              <p class="experience-company">Naukri.com · InfoEdge India</p>
-            </div>
-            <span class="experience-location">Delhi NCR</span>
-          </article>
+          <h2 class="section-title" id="experience-title">Experience.</h2>
         </div>
+      </header>
+      <div class="company-grid reveal">
+        <article class="company-card">
+          <svg viewBox="0 0 160 80" role="img" aria-label="BMO logo">
+            <circle cx="80" cy="40" r="34" fill="#ed1b2f"/>
+            <path d="M52 49V31h9l9 11 10-11h9v18h-8V40L70 52 60 40v9Z" fill="#fff"/>
+          </svg>
+          <h3>Bank of Montreal</h3>
+        </article>
+        <article class="company-card">
+          <svg viewBox="0 0 160 80" role="img" aria-label="ARO Robotic Systems logo">
+            <path d="M35 62 18 40l17-22h28l17 22-17 22H35Z" fill="none" stroke="currentColor" stroke-width="3"/>
+            <circle cx="49" cy="40" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M58 40h22M88 27v26M88 27h16c10 0 10 13 0 13H88m13 0 11 13" fill="none" stroke="currentColor" stroke-width="3"/>
+          </svg>
+          <h3>ARO Robotic Systems</h3>
+        </article>
+        <article class="company-card">
+          <svg viewBox="0 0 160 80" role="img" aria-label="Naukri and InfoEdge logo">
+            <path d="M18 52V28h8l15 14V28h9v24h-8L27 38v14Z" fill="#2474b5"/>
+            <path d="M56 52 68 28h9l12 24h-10l-2-5H67l-2 5Zm14-12h5l-2-6Z" fill="#f58220"/>
+            <text x="94" y="47" fill="currentColor" font-family="Arial, sans-serif" font-size="16" font-weight="700">naukri</text>
+          </svg>
+          <h3>Naukri · InfoEdge</h3>
+        </article>
       </div>
     </section>
 
@@ -1625,9 +1548,8 @@
       <header class="section-header reveal">
         <div>
           <p class="eyebrow">03 / Education</p>
-          <h2 class="section-title" id="education-title">Theory, applied.</h2>
+          <h2 class="section-title" id="education-title">Education.</h2>
         </div>
-        <p class="section-intro">Computing Science Specialization, grounded in systems, intelligent software, and the algorithms underneath both.</p>
       </header>
       <div class="education reveal">
         <div class="education-primary">
@@ -1661,8 +1583,8 @@
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="contact-orbit" aria-hidden="true"></div>
       <div class="contact-inner shell reveal">
-        <p class="eyebrow">04 / Start a conversation</p>
-        <h2 class="contact-title" id="contact-title">Have a hard problem? <a href="mailto:aaryanmuku3@gmail.com">Let’s talk.</a></h2>
+        <p class="eyebrow">04 / Contact</p>
+        <h2 class="contact-title" id="contact-title"><a href="mailto:aaryanmuku3@gmail.com">Let’s talk.</a></h2>
         <div class="contact-links">
           <a class="button button-solid magnetic" href="mailto:aaryanmuku3@gmail.com">Email me ↗</a>
           <a class="button magnetic" href="https://github.com/Aaryan-MK7" target="_blank" rel="noreferrer">GitHub ↗</a>
@@ -1675,7 +1597,7 @@
 
   <footer class="footer shell">
     <span>© <span id="year">2026</span> Aaryan Muku</span>
-    <span class="footer-center">Designed &amp; engineered with intention</span>
+    <span class="footer-center">Software engineer</span>
     <span class="footer-right" id="local-time">Toronto · --:--</span>
   </footer>
 
