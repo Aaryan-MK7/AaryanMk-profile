@@ -1,0 +1,78 @@
+name: Validate and deploy portfolio
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate static site
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          source = Path("index.html").read_text(encoding="utf-8")
+
+          class Validator(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids = set()
+                  self.references = []
+
+              def handle_starttag(self, tag, attrs):
+                  values = dict(attrs)
+                  if "id" in values:
+                      if values["id"] in self.ids:
+                          raise SystemExit(f"Duplicate id: {values['id']}")
+                      self.ids.add(values["id"])
+                  if tag == "a" and values.get("href", "").startswith("#"):
+                      self.references.append(values["href"][1:])
+
+          validator = Validator()
+          validator.feed(source)
+          missing = sorted(set(validator.references) - validator.ids)
+          if missing:
+              raise SystemExit(f"Missing fragment targets: {missing}")
+          if not Path("assets/Aaryan_Muku_Resume.pdf").is_file():
+              raise SystemExit("Resume asset is missing")
+          if "<!doctype html>" not in source.lower():
+              raise SystemExit("HTML doctype is missing")
+          print(f"Validated {len(validator.ids)} IDs and {len(validator.references)} internal links.")
+          PY
+      - name: Check whitespace
+        run: git diff --check
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: validate
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
