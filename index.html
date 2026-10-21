@@ -702,6 +702,18 @@
       font: 600 clamp(1.1rem, 2vw, 1.35rem)/1.1 var(--serif);
       letter-spacing: -0.03em;
     }
+
+    .company-copy {
+      min-width: 0;
+    }
+
+    .company-role {
+      margin: 0.3rem 0 0;
+      color: var(--muted);
+      font: 600 0.62rem/1.2 var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
     .company-period {
       color: var(--muted);
       font: 600 0.62rem/1 var(--mono);
@@ -1300,7 +1312,7 @@
       <div class="profile-copy">
         <p class="profile-label">Computing Science · University of Alberta</p>
         <h1 class="profile-name" id="profile-name">Aaryan Muku.</h1>
-        <p class="profile-description">Specialization student with internship experience across BMO, ARO Robotics, and Naukri.</p>
+        <p class="profile-description">CS Specialization @ University of Alberta with internship experience across BMO, ARO Robotics, and Naukri.</p>
       </div>
       <figure class="profile-portrait">
         <img src="assets/aaryan-muku.jpg" alt="Portrait of Aaryan Muku" width="800" height="800" fetchpriority="high">
@@ -1316,16 +1328,27 @@
       <div class="company-grid reveal">
         <article class="company-card">
           <img src="assets/bmo-logo.png" alt="BMO logo" width="56" height="56">
-          <h2>Bank of Montreal</h2>
+          <div class="company-copy">
+            <h2>Bank of Montreal</h2>
+            <p class="company-role">Software Engineering Intern</p>
+          </div>
           <span class="company-period">2026–27</span>
         </article>
         <article class="company-card">
           <img src="assets/aro-logo.png" alt="ARO Robotic Systems logo" width="56" height="56">
-          <h2>ARO Robotic Systems</h2>
+          <div class="company-copy">
+            <h2>ARO Robotic Systems</h2>
+            <p class="company-role">Software Engineering Intern</p>
+          </div>
+          <span class="company-period">2025</span>
         </article>
         <article class="company-card">
           <img src="assets/naukri-infoedge.png" alt="Naukri InfoEdge logo" width="56" height="56">
-          <h2>Naukri · InfoEdge</h2>
+          <div class="company-copy">
+            <h2>Naukri · InfoEdge</h2>
+            <p class="company-role">Software Engineering Intern</p>
+          </div>
+          <span class="company-period">2024</span>
         </article>
       </div>
     </section>
