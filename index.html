@@ -427,6 +427,70 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
+    .profile {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.65fr);
+      align-items: end;
+      gap: clamp(2rem, 6vw, 7rem);
+      padding-block: clamp(4rem, 9vw, 8rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .profile-copy {
+      padding-block: clamp(1rem, 4vw, 3rem);
+    }
+
+    .profile-label {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font: 600 0.68rem/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .profile-name {
+      margin: 0;
+      font: 500 clamp(3.5rem, 7vw, 7rem)/0.88 var(--serif);
+      letter-spacing: -0.065em;
+    }
+
+    .profile-description {
+      max-width: 31ch;
+      margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+      color: var(--muted);
+      font: 500 clamp(1.15rem, 2vw, 1.55rem)/1.45 var(--sans);
+      letter-spacing: -0.025em;
+    }
+
+    .profile-portrait {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      max-width: 34rem;
+      margin: 0;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      overflow: hidden;
+      justify-self: end;
+    }
+
+    .profile-portrait::after {
+      position: absolute;
+      inset: 0;
+      border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      content: "";
+      pointer-events: none;
+    }
+
+    .profile-portrait img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      filter: saturate(0.92) contrast(1.03);
+    }
 
     .section {
       padding-block: clamp(6rem, 12vw, 11rem);
@@ -725,6 +789,7 @@
     }
 
     .company-card {
+      position: relative;
       display: grid;
       min-height: 18rem;
       place-items: center;
@@ -746,15 +811,31 @@
       color: var(--bg);
     }
 
-    .company-card svg {
+    .company-card svg,
+    .company-card img {
       width: min(100%, 9rem);
       height: 5rem;
+      object-fit: contain;
+    }
+
+    .company-card img {
+      width: 5rem;
+      border-radius: 1rem;
     }
 
     .company-card h2 {
       margin: 0;
       font: 600 clamp(1.2rem, 2vw, 1.65rem)/1.1 var(--serif);
       letter-spacing: -0.03em;
+    }
+    .company-period {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      color: var(--muted);
+      font: 600 0.62rem/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .education {
@@ -1137,6 +1218,14 @@
       .section-header {
         grid-template-columns: 1fr;
       }
+      .profile {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-portrait {
+        width: min(100%, 34rem);
+        justify-self: start;
+      }
 
       .hero-cta {
         justify-content: flex-start;
@@ -1161,6 +1250,13 @@
     }
 
     @media (max-width: 680px) {
+      .profile {
+        padding-top: 2rem;
+      }
+
+      .profile-portrait {
+        order: -1;
+      }
       .hero-title {
         max-width: 100%;
         font-size: clamp(3.25rem, 15vw, 4.25rem);
@@ -1321,35 +1417,41 @@
   </header>
 
   <main id="main">
+    <div class="profile shell reveal" aria-labelledby="profile-name">
+      <div class="profile-copy">
+        <p class="profile-label">Computing Science · University of Alberta</p>
+        <h1 class="profile-name" id="profile-name">Aaryan Muku.</h1>
+        <p class="profile-description">Specialization student with internship experience across BMO, ARO Robotics, and Naukri.</p>
+      </div>
+      <figure class="profile-portrait">
+        <img src="assets/aaryan-muku.jpg" alt="Portrait of Aaryan Muku" width="800" height="800" fetchpriority="high">
+      </figure>
+    </div>
     <section class="section shell" id="experience" aria-labelledby="experience-title">
       <header class="section-header reveal">
         <div>
           <p class="eyebrow">01 / Experience</p>
-          <h1 class="section-title" id="experience-title">Experience.</h1>
+          <h2 class="section-title" id="experience-title">Experience.</h2>
         </div>
       </header>
       <div class="company-grid reveal">
         <article class="company-card">
+          <span class="company-period">2026–27</span>
           <svg viewBox="0 0 160 80" role="img" aria-label="BMO logo">
             <circle cx="80" cy="40" r="34" fill="#ed1b2f"/>
-            <path d="M52 49V31h9l9 11 10-11h9v18h-8V40L70 52 60 40v9Z" fill="#fff"/>
+            <path d="M54 53V35l14-17c1.2-1.5 3.2-1.5 4.4 0L80 28l7.6-10c1.2-1.5 3.2-1.5 4.4 0l14 17v18H54Zm0-10 14-17 9.8 13c1.1 1.5 3.1 1.5 4.3 0L92 26l14 17v10H54V43Z" fill="#fff" fill-rule="evenodd"/>
           </svg>
           <h2>Bank of Montreal</h2>
         </article>
         <article class="company-card">
           <svg viewBox="0 0 160 80" role="img" aria-label="ARO Robotic Systems logo">
-            <path d="M35 62 18 40l17-22h28l17 22-17 22H35Z" fill="none" stroke="currentColor" stroke-width="3"/>
-            <circle cx="49" cy="40" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
-            <path d="M58 40h22M88 27v26M88 27h16c10 0 10 13 0 13H88m13 0 11 13" fill="none" stroke="currentColor" stroke-width="3"/>
+            <circle cx="80" cy="40" r="36" fill="#ff9418"/>
+            <path d="M111 64H96a9 9 0 0 1-9-9V39c0-12-8-20-19-20-12 0-21 9-21 21s9 21 21 21c5 0 10-2 14-5v8c-4 3-10 5-16 5-17 0-30-13-30-29S49 11 66 11c17 0 30 12 30 29v14h15v10ZM68 31a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" fill="var(--bg)" fill-rule="evenodd"/>
           </svg>
           <h2>ARO Robotic Systems</h2>
         </article>
         <article class="company-card">
-          <svg viewBox="0 0 160 80" role="img" aria-label="Naukri and InfoEdge logo">
-            <path d="M18 52V28h8l15 14V28h9v24h-8L27 38v14Z" fill="#2474b5"/>
-            <path d="M56 52 68 28h9l12 24h-10l-2-5H67l-2 5Zm14-12h5l-2-6Z" fill="#f58220"/>
-            <text x="94" y="47" fill="currentColor" font-family="Arial, sans-serif" font-size="16" font-weight="700">naukri</text>
-          </svg>
+          <img src="assets/naukri-infoedge.png" alt="Naukri InfoEdge logo" width="80" height="80">
           <h2>Naukri · InfoEdge</h2>
         </article>
       </div>
